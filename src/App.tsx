@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [selected, setSelected ] = useState<any>(null);
+
+  const toggle = (i:any) =>{
+    if (selected === i){
+      return setSelected (null)
+    }
+    setSelected(i)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="pacote">
+      <div className="accordion">
+         {data.map((item,i) => (
+           <div className="item">
+             <div className='titulo' onClick={()=>toggle(i)}>
+               <h2>{item.pergunta}</h2>
+               <p>{selected === i ? '-' : '+'}</p>
+             </div>
+             <div className={selected === i ? 'conteudo show' : 'conteudo'}>
+                {item.resposta}
+             </div>
+           </div>
+         ))
+
+         }
+      </div>
+
     </div>
   );
 }
+
+const data = [
+  {
+    pergunta: 'Questão 1',
+    resposta: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, dolorum. Eum a ea sint, ullam ipsum consequuntur voluptate maxime mollitia delectus cum officiis unde recusandae! Quod porro qui beatae unde.'
+  },
+  {
+    pergunta: 'Questão 2',
+    resposta: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, dolorum. Eum a ea sint, ullam ipsum consequuntur voluptate maxime mollitia delectus cum officiis unde recusandae! Quod porro qui beatae unde.'
+  },
+  {
+    pergunta: 'Questão 3',
+    resposta: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, dolorum. Eum a ea sint, ullam ipsum consequuntur voluptate maxime mollitia delectus cum officiis unde recusandae! Quod porro qui beatae unde.'
+  }
+]
+
 
 export default App;
